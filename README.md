@@ -1,4 +1,4 @@
-"# DMPMWorkLifeBalance" 
+# DMPMWorkLifeBalance
 Objective: Identified characteristics associated with high work-life balance and created predictive and descriptive models to provide insights on well-being improvement strategies.
 
 Tools: SAS Enterprise Miner
