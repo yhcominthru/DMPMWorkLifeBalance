@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?><_ROOT_ EMVERSION="15.2" ORIENTATION="HORIZONTAL">
+<Workspace>
+<NODES>
+<NODE CLASS="SASHELP.EMUTIL.CONTROLPOINT.CLASS" COMPONENT="ControlPoint" ID="CNTRL" X="840" Y="460" DESCRIPTION="Student 3: Tan Yon Hong" DIAGRAMID="_ROOT_" PARENTID="">
+<PROPERTIES/>
+</NODE>
+<NODE CLASS="SASHELP.EMUTIL.CONTROLPOINT.CLASS" COMPONENT="ControlPoint" ID="CNTRL2" X="1196" Y="211" DESCRIPTION="Student 2: Chee Wei Keng" DIAGRAMID="_ROOT_" PARENTID="">
+<PROPERTIES/>
+</NODE>
+<NODE CLASS="SASHELP.EMUTIL.CONTROLPOINT.CLASS" COMPONENT="ControlPoint" ID="CNTRL3" X="908" Y="378" DESCRIPTION="Student 1: Wong Kit Yee" DIAGRAMID="_ROOT_" PARENTID="">
+<PROPERTIES/>
+</NODE>
+<NODE CLASS="SASHELP.EMUTIL.CONTROLPOINT.CLASS" COMPONENT="ControlPoint" ID="CNTRL4" X="1074" Y="429" DESCRIPTION="6 Models" DIAGRAMID="_ROOT_" PARENTID="">
+<PROPERTIES/>
+</NODE>
+<NODE CLASS="SASHELP.EMEXPL.CLUSTER.CLASS" COMPONENT="Cluster" ID="Clus" X="615" Y="138" DESCRIPTION="Cluster" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="EXPLORE" TOOLPREFIX="Clus">
+<PROPERTIES Bins="100" Clusvar="_SEGMENT_" ClusvarLabel="Segment Variable" ClusvarRole="SEGMENT" MaxC="6" NominalEncoding="GLM" OrdinalEncoding="RANK" MissingInterval="DEFAULT" MissingNominal="DEFAULT" MissingOrdinal="DEFAULT" ImputationMethod="NONE" HideVariable="Y" TrainDefaults="Y" Learn="." LearnInitial="0.5" LearnFinal="0.02" LearnSteps="1000" MaxIter="10" MaxSteps="1200" XConv="0.0001" Initial="DEFAULT" Drift="N" Radius="0" Stdize="STD" Summary="N" TreeProfile="Y" ClusterGraphs="Y" NumberClusterMethod="USER" DistancePlot="Y" FinalMaxNum="20" AutomaticMaxNum="50" AutomaticMinNum="2" AutomaticMethod="WARD" CCCCutOff="3" ForceRun="N" RunAction="Train" Component="Cluster">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMMDFY.EMDROP.CLASS" COMPONENT="Drop" ID="Drop" X="423" Y="256" DESCRIPTION="Drop" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODIFY" TOOLPREFIX="Drop">
+<PROPERTIES DropFromTable="N" DropHidden="Y" DropInput="N" DropTarget="N" DropRejected="Y" DropAssess="N" DropPredict="N" DropFreq="N" DropClassification="N" DropResidual="N" DropOther="N" ForceRun="N" RunAction="Train" Component="Drop">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes>
+<DELTA Variable="GENDER" AttributeName="DROP" AttributeValue="Y"/>
+<DELTA Variable="SUFFICIENT_INCOME" AttributeName="DROP" AttributeValue="Y"/>
+</EmVariableAttributes>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMMODL.ENSEMBLE.CLASS" COMPONENT="Ensemble" ID="Ensmbl" X="1212" Y="359" DESCRIPTION="Ensemble" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Ensmbl">
+<PROPERTIES Predicted="AVERAGE" Posterior="AVERAGE" VotingPosterior="AVERAGE" ForceRun="N" RunAction="Train" Component="Ensemble">
+<VariableProperties/>
+<EmVariableAttributes/>
+<EmTargetAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="FileImport" ID="FIMPORT" X="248" Y="266" DESCRIPTION="Wellbeing &amp; Lifestyle Data" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="FIMPORT">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMSAMP.FIMPORT.SOURCE" ImportType="Local" GuessRows="500" Delimiter="," NameRow="Y" SkipRows="0" MaxRows="1000000" MaxCols="10000" FileType="csv" Role="TRAIN" ForceRun="N" Summarize="N" AdvancedAdvisor="N" RunAction="Train" Component="FileImport" IFileName="C:\Users\Kitty Wong\Documents\DMPM\Assignments\Wellbeing_and_lifestyle_data_Kaggle.csv" AccessTable="NoTableName" UserID="NoUserID" Password="NoPassword">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes>
+<DELTA Variable="WORK_LIFE_BALANCE_SCORE" AttributeName="ROLE" AttributeValue="TARGET"/>
+</EmVariableAttributes>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<VARIABLESETDELTA Type="EXTERNAL" Extension="txt">
+<Data><![CDATA[
+if NAME=&quot;WORK_LIFE_BALANCE_SCORE&quot; then do;
+ROLE=&quot;TARGET&quot;;
+LEVEL=&quot;INTERVAL&quot;;
+ORDER=&quot;&quot;;
+DROP=&quot;N&quot;;
+end;
+]]>
+</Data>
+</VARIABLESETDELTA>
+<DELTACODE Type="EXTERNAL" Extension="txt">
+<Data><![CDATA[
+if NAME=&quot;WORK_LIFE_BALANCE_SCORE&quot; then do;
+ROLE=&quot;TARGET&quot;;
+LEVEL=&quot;INTERVAL&quot;;
+ORDER=&quot;&quot;;
+end;
+drop DROP;
+]]>
+</Data>
+</DELTACODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="HPDMNeural" ID="HPNNA" X="759" Y="318" DESCRIPTION="5L 10N Sine HP Neural Network" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="HPNNA">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.HPDM.HPDMNeural.SOURCE" ToolType="MODEL" InputStd="RANGE" HIDDEN="3" HIDDENLAYERS="5" ARCHITECTURE="USERDEFINED" DIRECTCONN="N" TargetStd="RANGE" TargetActivation="IDENTITY" TargetError="NORMAL" OPTMETHOD="LBFGS" NUMTRIES="2" MAXITER="300" USEVALID="N" USEINVERSE="N" MISSASLVL="N" MAXLINKS="1000" ForceRun="N" RunAction="Train" Component="HPDMNeural" TableEditor="">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<HIDDENOPTIONS Type="DATA">
+<Data>
+<Obs _OBSID_="1" LAYER="1" ACTFUNC="SIN" NEURONS="10"/>
+<Obs _OBSID_="2" LAYER="2" ACTFUNC="SIN" NEURONS="10"/>
+<Obs _OBSID_="3" LAYER="3" ACTFUNC="SIN" NEURONS="10"/>
+<Obs _OBSID_="4" LAYER="4" ACTFUNC="SIN" NEURONS="10"/>
+<Obs _OBSID_="5" LAYER="5" ACTFUNC="SIN" NEURONS="10"/>
+</Data>
+<Metadata>
+<Variable NAME="_OBSID_" LABEL="ObsID" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="Layer" LABEL="Layer" LENGTH="4" FORMAT="" TYPE="N"/>
+<Variable NAME="ActFunc" LABEL="Activation Function" LENGTH="8" FORMAT="" TYPE="C"/>
+<Variable NAME="Neurons" LABEL="Number of Neurons" LENGTH="4" FORMAT="" TYPE="N"/>
+</Metadata>
+</HIDDENOPTIONS>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="HPDMNeural" ID="HPNNA2" X="791" Y="210" DESCRIPTION="HP Neural 5L 5N" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="HPNNA">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.HPDM.HPDMNeural.SOURCE" ToolType="MODEL" InputStd="RANGE" HIDDEN="3" HIDDENLAYERS="5" ARCHITECTURE="USERDEFINED" DIRECTCONN="N" TargetStd="RANGE" TargetActivation="IDENTITY" TargetError="NORMAL" OPTMETHOD="LBFGS" NUMTRIES="2" MAXITER="300" USEVALID="N" USEINVERSE="N" MISSASLVL="N" MAXLINKS="1000" ForceRun="N" RunAction="Train" Component="HPDMNeural" TableEditor="">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<HIDDENOPTIONS Type="DATA">
+<Data>
+<Obs _OBSID_="1" LAYER="1" ACTFUNC="TANH" NEURONS="5"/>
+<Obs _OBSID_="2" LAYER="2" ACTFUNC="TANH" NEURONS="5"/>
+<Obs _OBSID_="3" LAYER="3" ACTFUNC="TANH" NEURONS="5"/>
+<Obs _OBSID_="4" LAYER="4" ACTFUNC="TANH" NEURONS="5"/>
+<Obs _OBSID_="5" LAYER="5" ACTFUNC="TANH" NEURONS="5"/>
+</Data>
+<Metadata>
+<Variable NAME="_OBSID_" LABEL="ObsID" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="Layer" LABEL="Layer" LENGTH="4" FORMAT="" TYPE="N"/>
+<Variable NAME="ActFunc" LABEL="Activation Function" LENGTH="8" FORMAT="" TYPE="C"/>
+<Variable NAME="Neurons" LABEL="Number of Neurons" LENGTH="4" FORMAT="" TYPE="N"/>
+</Metadata>
+</HIDDENOPTIONS>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMMDFY.EMIMPUTE.CLASS" COMPONENT="Impute" ID="Impt" X="421" Y="154" DESCRIPTION="Impute" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODIFY" TOOLPREFIX="Impt">
+<PROPERTIES MethodInterval="MEAN" MethodClass="COUNT" MethodTargetInterval="NONE" MethodTargetClass="NONE" ABWTuning="9" AHUBERTuning="1.5" AWAVETuning="6.2831853072" SpacingProportion="90" DefaultChar="" DefaultNum="." RandomSeed="12345" Normalize="Y" ImputeNoMissing="N" MaxPctMissing="50" ValidateTestMissing="N" DistributionMissing="N" LeafSize="5" Maxbranch="2" Maxdepth="6" MinCatSize="5" Nrules="5" Nsurrs="2" Splitsize="." Indicator="NONE" IndicatorRole="REJECTED" ReplaceVariable="N" HideVariable="Y" IndicatorSource="IMPUTED" ForceRun="N" RunAction="Train" Component="Impute">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMASSMT.ASSESS.CLASS" COMPONENT="ModelCompare" ID="MdlComp" X="1350" Y="429" DESCRIPTION="Model Comparison" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="ASSESS" TOOLPREFIX="MdlComp">
+<PROPERTIES NumberOfReportedLevels="1E-6" NormalizeReportingVariables="Y" DecileBin="20" LiftEpsilon="1E-6" ProfitEpsilon="1E-6" RoiEpsilon="1E-6" ScoreDistBin="20" RocChart="Y" RocEpsilon="0.01" AssessAllTargetLevels="N" SelectionData="DEFAULT" HPCriteria="DEFAULT" intervalViyaCriteria="DEFAULT" classViyaCriteria="DEFAULT" SelectionTable="TRAIN" SelectionCriteria="DEFAULT" SelectionDepth="10" NumberofBins="20" RecomputeAssess="N" TargetName="WORK_LIFE_BALANCE_SCORE" ModelId="Reg2" ModelDescription="3rd Poly Stepwise Regression" ModelCriteria="Valid: Average Squared Error" ForceRun="N" RunAction="Train" Component="ModelCompare" StatisticUsed="_VASE_" TargetLabel="">
+<VariableProperties/>
+<EmVariableAttributes/>
+<EmTargetAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMUTIL.EMMETADATA.CLASS" COMPONENT="Metadata" ID="Meta" X="919" Y="269" DESCRIPTION="Metadata" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="UTILITY" TOOLPREFIX="Meta">
+<PROPERTIES HideRejected="N" AdvancedAdvisor="N" CombineRule="NONE" ComputeStatistics="N" ForceRun="N" RunAction="Train" Component="Metadata">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes>
+<DELTA Variable="ACHIEVEMENT" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="AGE" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="BMI_RANGE" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="CORE_CIRCLE" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="DAILY_SHOUTING" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="DAILY_STEPS" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="DONATION" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="FLOW" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="FRUITS_VEGGIES" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="IMP_DAILY_STRESS" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="LIVE_VISION" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="LOST_VACATION" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="PERSONAL_AWARDS" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="PLACES_VISITED" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="P_WORK_LIFE_BALANCE_SCORE" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="R_WORK_LIFE_BALANCE_SCORE" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="SLEEP_HOURS" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="SOCIAL_NETWORK" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="SUPPORTING_OTHERS" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="TIME_FOR_PASSION" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="TODO_COMPLETED" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="VAR1" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="WEEKLY_MEDITATION" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="WORK_LIFE_BALANCE_SCORE" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="_WARN_" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="_dataobs_" AttributeName="HIDDEN" AttributeValue="N"/>
+</EmVariableAttributes>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+<IMPORTSET Type="DATA">
+<Data>
+<Obs USE="Y" PORT="DATA" NODELABEL="HPNNA" NODEPORT="TRAIN" LIBNAME="" DATASET="HPNNA_TRAIN" ROLE="TRAIN" MODTIME="1992228288.8" COLUMNMETA="HPNNA_CMeta_TRAIN" COLUMNMETAMODTIME="1992228290.2" EMINFO="HPNNA_EMINFO" EMINFOMODTIME="1992228290.3" NOBS="-1" DATASOURCE=""/>
+<Obs USE="Y" PORT="VALIDATE" NODELABEL="HPNNA" NODEPORT="VALIDATE" LIBNAME="" DATASET="HPNNA_VALIDATE" ROLE="VALIDATE" MODTIME="1992228288.9" COLUMNMETA="HPNNA_CMeta_TRAIN" COLUMNMETAMODTIME="1992228290.2" EMINFO="" EMINFOMODTIME="." NOBS="-1" DATASOURCE=""/>
+<Obs USE="Y" PORT="TEST" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="SCORE" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="TRANSACTION" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="DOCUMENT" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="CLUSMEAN" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="CLUSSTAT" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="ESTIMATE" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="ESTIMATE" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="RANK" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="REPORTFIT" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="RULES" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="SCOREDIST" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="TERMS" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="TREE" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="VARMAP" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+</Data>
+<Metadata>
+<Variable NAME="USE" LABEL="" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="PORT" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="NODELABEL" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="NODEPORT" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LIBNAME" LABEL="" LENGTH="8" FORMAT="" TYPE="C"/>
+<Variable NAME="DATASET" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="ROLE" LABEL="" LENGTH="20" FORMAT="" TYPE="C"/>
+<Variable NAME="MODTIME" LABEL="" LENGTH="8" FORMAT="DATETIME20." TYPE="N"/>
+<Variable NAME="COLUMNMETA" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="COLUMNMETAMODTIME" LABEL="" LENGTH="8" FORMAT="DATETIME20." TYPE="N"/>
+<Variable NAME="EMINFO" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="EMINFOMODTIME" LABEL="" LENGTH="8" FORMAT="DATETIME20." TYPE="N"/>
+<Variable NAME="NOBS" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DATASOURCE" LABEL="" LENGTH="29" FORMAT="" TYPE="C"/>
+</Metadata>
+</IMPORTSET>
+<VARIABLEPROPERTIES_DATA Type="EXTERNAL" Extension="sas">
+<Data><![CDATA[
+*------------------------------------------------------------*;
+* Variable Attributes for DATA;
+*------------------------------------------------------------*;
+]]>
+</Data>
+</VARIABLEPROPERTIES_DATA>
+<METACODE_DATA Type="EXTERNAL" Extension="sas">
+<Data><![CDATA[
+*------------------------------------------------------------*;
+* Metadata Changes;
+*------------------------------------------------------------*;
+]]>
+</Data>
+</METACODE_DATA>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMUTIL.EMMETADATA.CLASS" COMPONENT="Metadata" ID="Meta2" X="965" Y="135" DESCRIPTION="Metadata" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="UTILITY" TOOLPREFIX="Meta">
+<PROPERTIES HideRejected="N" AdvancedAdvisor="N" CombineRule="NONE" ComputeStatistics="N" ForceRun="N" RunAction="Train" Component="Metadata">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes>
+<DELTA Variable="ACHIEVEMENT" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="AGE" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="BMI_RANGE" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="CORE_CIRCLE" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="DAILY_SHOUTING" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="DAILY_STEPS" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="DONATION" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="FLOW" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="FRUITS_VEGGIES" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="IMP_DAILY_STRESS" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="LIVE_VISION" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="LOST_VACATION" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="PERSONAL_AWARDS" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="PLACES_VISITED" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="P_WORK_LIFE_BALANCE_SCORE" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="R_WORK_LIFE_BALANCE_SCORE" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="SLEEP_HOURS" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="SOCIAL_NETWORK" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="SUPPORTING_OTHERS" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="TIME_FOR_PASSION" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="TODO_COMPLETED" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="VAR1" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="WEEKLY_MEDITATION" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="WORK_LIFE_BALANCE_SCORE" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="_WARN_" AttributeName="HIDDEN" AttributeValue="N"/>
+<DELTA Variable="_dataobs_" AttributeName="HIDDEN" AttributeValue="N"/>
+</EmVariableAttributes>
+<EmFileProperties>
+<IMPORTSET Type="DATA">
+<Data>
+<Obs USE="Y" PORT="DATA" NODELABEL="HPNNA2" NODEPORT="TRAIN" LIBNAME="" DATASET="HPNNA2_TRAIN" ROLE="TRAIN" MODTIME="1992228262.4" COLUMNMETA="HPNNA2_CMeta_TRAIN" COLUMNMETAMODTIME="1992228263.7" EMINFO="HPNNA2_EMINFO" EMINFOMODTIME="1992228263.8" NOBS="-1" DATASOURCE=""/>
+<Obs USE="Y" PORT="VALIDATE" NODELABEL="HPNNA2" NODEPORT="VALIDATE" LIBNAME="" DATASET="HPNNA2_VALIDATE" ROLE="VALIDATE" MODTIME="1992228262.4" COLUMNMETA="HPNNA2_CMeta_TRAIN" COLUMNMETAMODTIME="1992228263.7" EMINFO="" EMINFOMODTIME="." NOBS="-1" DATASOURCE=""/>
+<Obs USE="Y" PORT="TEST" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="SCORE" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="TRANSACTION" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="DOCUMENT" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="CLUSMEAN" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="CLUSSTAT" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="ESTIMATE" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="RANK" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="REPORTFIT" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="RULES" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="SCOREDIST" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="TERMS" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="TREE" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+<Obs USE="Y" PORT="VARMAP" NODELABEL="" NODEPORT="" LIBNAME="" DATASET="" ROLE="" MODTIME="." COLUMNMETA="" COLUMNMETAMODTIME="." EMINFO="" EMINFOMODTIME="." NOBS="." DATASOURCE=""/>
+</Data>
+<Metadata>
+<Variable NAME="USE" LABEL="" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="PORT" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="NODELABEL" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="NODEPORT" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LIBNAME" LABEL="" LENGTH="8" FORMAT="" TYPE="C"/>
+<Variable NAME="DATASET" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="ROLE" LABEL="" LENGTH="20" FORMAT="" TYPE="C"/>
+<Variable NAME="MODTIME" LABEL="" LENGTH="8" FORMAT="DATETIME20." TYPE="N"/>
+<Variable NAME="COLUMNMETA" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="COLUMNMETAMODTIME" LABEL="" LENGTH="8" FORMAT="DATETIME20." TYPE="N"/>
+<Variable NAME="EMINFO" LABEL="" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="EMINFOMODTIME" LABEL="" LENGTH="8" FORMAT="DATETIME20." TYPE="N"/>
+<Variable NAME="NOBS" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="DATASOURCE" LABEL="" LENGTH="29" FORMAT="" TYPE="C"/>
+</Metadata>
+</IMPORTSET>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+<VARIABLEPROPERTIES_DATA Type="EXTERNAL" Extension="sas">
+<Data><![CDATA[
+*------------------------------------------------------------*;
+* Variable Attributes for DATA;
+*------------------------------------------------------------*;
+]]>
+</Data>
+</VARIABLEPROPERTIES_DATA>
+<METACODE_DATA Type="EXTERNAL" Extension="sas">
+<Data><![CDATA[
+*------------------------------------------------------------*;
+* Metadata Changes;
+*------------------------------------------------------------*;
+]]>
+</Data>
+</METACODE_DATA>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMSAMP.EMDPART.CLASS" COMPONENT="Partition" ID="Part" X="420" Y="443" DESCRIPTION="Data Partition" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="SAMPLE" TOOLPREFIX="Part">
+<PROPERTIES Method="DEFAULT" TrainPct="80" ValidatePct="20" TestPct="0" RandomSeed="12345" OutputType="DATA" IntervalDistribution="Y" ClassDistribution="Y" ForceRun="N" RunAction="Train" Component="Partition">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="Profile" ID="Prof" X="799" Y="138" DESCRIPTION="Segment Profile" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="ASSESS" TOOLPREFIX="Prof">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMEXPL.PROFILE.SOURCE" DataNeeded="Y" MinWorth="0.01" MaxNumInput="10" MaxNumReport="10" NumHistBars="8" ProfileAll="N" PrintWorth="Y" UseReportVars="Y" TargetRole="NONE" OtherPercentCutOff="95" MaxDepth="1" ForceRun="N" RunAction="Train" Component="Profile">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMMODL.REGRESSION.CLASS" COMPONENT="Regression" ID="Reg" X="607" Y="293" DESCRIPTION="2nd Poly Forward Regression" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Reg">
+<PROPERTIES MainEffect="Y" TwoFactor="N" Polynomial="Y" PolynomialDegree="2" Terms="N" Error="NORMAL" LinkFunction="LOGIT" SuppressIntercept="N" InputCoding="DEVIATION" MinResourceUse="N" ModelSelection="FORWARD" SelectionCriterion="VERROR" SelectionDefault="Y" Sequential="N" SlEntry="0.05" SlStay="0.05" Start="0" Stop="0" Force="0" Hierarchy="CLASS" Rule="NONE" MaxStep="." StepOutput="N" OptimizationTechnique="DEFAULT" ModelDefaults="Y" MaxIterations="." MaxFunctionCalls="." MaxCPUTime="1 HOUR" ConvDefaults="Y" AbsConvValue="-1.34078E154" AbsFValue="0" AbsFTime="1" AbsGValue="0.00001" AbsGTime="1" AbsXValue="1E-8" AbsXTime="1" FConvValue="0" FConvTimes="1" GConvValue="1E-6" GConvTimes="1" ClParm="N" Covout="N" CovB="N" CorB="N" Simple="N" SuppressOutput="N" Details="N" PrintDesignMatrix="N" SASSPDS="N" Performance="N" ExcludedVariable="REJECT" ForceRun="N" RunAction="Train" Component="Regression" Interactions="">
+<VariableProperties/>
+<EmTargetAttributes>
+<WORK_LIFE_BALANCE_SCORE>
+<DecData Table="EMWS7.Reg_WORK_LIFE_BALANC_DD">
+<Data>
+<Obs WORK_LIFE_BALANCE_SCORE="480"/>
+<Obs WORK_LIFE_BALANCE_SCORE="820.2"/>
+<Obs WORK_LIFE_BALANCE_SCORE="666.52662388"/>
+</Data>
+<Metadata>
+<Variable NAME="WORK_LIFE_BALANCE_SCORE" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecData>
+<DecMeta Table="EMWS7.Reg_WORK_LIFE_BALANC_DM">
+<Data>
+<Obs _TYPE_="MATRIX" VARIABLE="" LABEL="" FORMAT="" LEVEL="PROFIT" TYPE="" COST="" USE="N" MIN="." MEAN="." MAX="."/>
+<Obs _TYPE_="TARGET" VARIABLE="WORK_LIFE_BALANCE_SCORE" LABEL="" FORMAT="BEST12.0" LEVEL="INTERVAL" TYPE="N" COST="" USE="" MIN="480" MEAN="666.52662388" MAX="820.2"/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_WORK_LIFE_BALANCE_SCORE" LABEL="Predicted: WORK_LIFE_BALANCE_SCORE" FORMAT="" LEVEL="" TYPE="N" COST="" USE="" MIN="." MEAN="." MAX="."/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_WORK_LIFE_BALANCE_SCORE" LABEL="Residual: WORK_LIFE_BALANCE_SCORE" FORMAT="" LEVEL="" TYPE="N" COST="" USE="" MIN="." MEAN="." MAX="."/>
+</Data>
+<Metadata>
+<Variable NAME="_TYPE_" LABEL="Type" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="VARIABLE" LABEL="Variable" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LABEL" LABEL="Label" LENGTH="256" FORMAT="" TYPE="C"/>
+<Variable NAME="FORMAT" LABEL="Format" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LEVEL" LABEL="Measurement Level" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="TYPE" LABEL="Type" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="COST" LABEL="Cost" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="USE" LABEL="Use" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="MIN" LABEL="Minimum" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="MEAN" LABEL="Mean" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="MAX" LABEL="Maximum" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecMeta>
+</WORK_LIFE_BALANCE_SCORE>
+</EmTargetAttributes>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMMODL.REGRESSION.CLASS" COMPONENT="Regression" ID="Reg2" X="611" Y="376" DESCRIPTION="3rd Poly Stepwise Regression" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Reg">
+<PROPERTIES MainEffect="Y" TwoFactor="N" Polynomial="Y" PolynomialDegree="3" Terms="N" Error="NORMAL" LinkFunction="LOGIT" SuppressIntercept="N" InputCoding="DEVIATION" MinResourceUse="N" ModelSelection="STEPWISE" SelectionCriterion="VERROR" SelectionDefault="Y" Sequential="N" SlEntry="0.05" SlStay="0.05" Start="0" Stop="0" Force="0" Hierarchy="CLASS" Rule="NONE" MaxStep="." StepOutput="N" OptimizationTechnique="DEFAULT" ModelDefaults="Y" MaxIterations="." MaxFunctionCalls="." MaxCPUTime="1 HOUR" ConvDefaults="Y" AbsConvValue="-1.34078E154" AbsFValue="0" AbsFTime="1" AbsGValue="0.00001" AbsGTime="1" AbsXValue="1E-8" AbsXTime="1" FConvValue="0" FConvTimes="1" GConvValue="1E-6" GConvTimes="1" ClParm="N" Covout="N" CovB="N" CorB="N" Simple="N" SuppressOutput="N" Details="N" PrintDesignMatrix="N" SASSPDS="N" Performance="N" ExcludedVariable="REJECT" ForceRun="N" RunAction="Train" Component="Regression" Interactions="">
+<VariableProperties/>
+<EmTargetAttributes>
+<WORK_LIFE_BALANCE_SCORE>
+<DecData Table="EMWS7.Reg2_WORK_LIFE_BALANC_DD">
+<Data>
+<Obs WORK_LIFE_BALANCE_SCORE="480"/>
+<Obs WORK_LIFE_BALANCE_SCORE="820.2"/>
+<Obs WORK_LIFE_BALANCE_SCORE="666.52662388"/>
+</Data>
+<Metadata>
+<Variable NAME="WORK_LIFE_BALANCE_SCORE" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecData>
+<DecMeta Table="EMWS7.Reg2_WORK_LIFE_BALANC_DM">
+<Data>
+<Obs _TYPE_="MATRIX" VARIABLE="" LABEL="" FORMAT="" LEVEL="PROFIT" TYPE="" COST="" USE="N" MIN="." MEAN="." MAX="."/>
+<Obs _TYPE_="TARGET" VARIABLE="WORK_LIFE_BALANCE_SCORE" LABEL="" FORMAT="BEST12.0" LEVEL="INTERVAL" TYPE="N" COST="" USE="" MIN="480" MEAN="666.52662388" MAX="820.2"/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_WORK_LIFE_BALANCE_SCORE" LABEL="Predicted: WORK_LIFE_BALANCE_SCORE" FORMAT="" LEVEL="" TYPE="N" COST="" USE="" MIN="." MEAN="." MAX="."/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_WORK_LIFE_BALANCE_SCORE" LABEL="Residual: WORK_LIFE_BALANCE_SCORE" FORMAT="" LEVEL="" TYPE="N" COST="" USE="" MIN="." MEAN="." MAX="."/>
+</Data>
+<Metadata>
+<Variable NAME="_TYPE_" LABEL="Type" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="VARIABLE" LABEL="Variable" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LABEL" LABEL="Label" LENGTH="256" FORMAT="" TYPE="C"/>
+<Variable NAME="FORMAT" LABEL="Format" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LEVEL" LABEL="Measurement Level" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="TYPE" LABEL="Type" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="COST" LABEL="Cost" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="USE" LABEL="Use" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="MIN" LABEL="Minimum" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="MEAN" LABEL="Mean" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="MAX" LABEL="Maximum" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecMeta>
+</WORK_LIFE_BALANCE_SCORE>
+</EmTargetAttributes>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMMODL.REGRESSION.CLASS" COMPONENT="Regression" ID="Reg3" X="612" Y="436" DESCRIPTION="2nd Poly Stepwise Regression" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Reg">
+<PROPERTIES MainEffect="Y" TwoFactor="N" Polynomial="Y" PolynomialDegree="2" Terms="N" Error="NORMAL" LinkFunction="LOGIT" SuppressIntercept="N" InputCoding="DEVIATION" MinResourceUse="N" ModelSelection="STEPWISE" SelectionCriterion="VERROR" SelectionDefault="Y" Sequential="N" SlEntry="0.05" SlStay="0.05" Start="0" Stop="0" Force="0" Hierarchy="CLASS" Rule="NONE" MaxStep="." StepOutput="N" OptimizationTechnique="DEFAULT" ModelDefaults="Y" MaxIterations="." MaxFunctionCalls="." MaxCPUTime="1 HOUR" ConvDefaults="Y" AbsConvValue="-1.34078E154" AbsFValue="0" AbsFTime="1" AbsGValue="0.00001" AbsGTime="1" AbsXValue="1E-8" AbsXTime="1" FConvValue="0" FConvTimes="1" GConvValue="1E-6" GConvTimes="1" ClParm="N" Covout="N" CovB="N" CorB="N" Simple="N" SuppressOutput="N" Details="N" PrintDesignMatrix="N" SASSPDS="N" Performance="N" ExcludedVariable="REJECT" ForceRun="N" RunAction="Train" Component="Regression" Interactions="">
+<VariableProperties/>
+<EmTargetAttributes>
+<WORK_LIFE_BALANCE_SCORE>
+<DecData Table="EMWS7.Reg3_WORK_LIFE_BALANC_DD">
+<Data>
+<Obs WORK_LIFE_BALANCE_SCORE="480"/>
+<Obs WORK_LIFE_BALANCE_SCORE="820.2"/>
+<Obs WORK_LIFE_BALANCE_SCORE="666.52662388"/>
+</Data>
+<Metadata>
+<Variable NAME="WORK_LIFE_BALANCE_SCORE" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecData>
+<DecMeta Table="EMWS7.Reg3_WORK_LIFE_BALANC_DM">
+<Data>
+<Obs _TYPE_="MATRIX" VARIABLE="" LABEL="" FORMAT="" LEVEL="PROFIT" TYPE="" COST="" USE="N" MIN="." MEAN="." MAX="."/>
+<Obs _TYPE_="TARGET" VARIABLE="WORK_LIFE_BALANCE_SCORE" LABEL="" FORMAT="BEST12.0" LEVEL="INTERVAL" TYPE="N" COST="" USE="" MIN="480" MEAN="666.52662388" MAX="820.2"/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_WORK_LIFE_BALANCE_SCORE" LABEL="Predicted: WORK_LIFE_BALANCE_SCORE" FORMAT="" LEVEL="" TYPE="N" COST="" USE="" MIN="." MEAN="." MAX="."/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_WORK_LIFE_BALANCE_SCORE" LABEL="Residual: WORK_LIFE_BALANCE_SCORE" FORMAT="" LEVEL="" TYPE="N" COST="" USE="" MIN="." MEAN="." MAX="."/>
+</Data>
+<Metadata>
+<Variable NAME="_TYPE_" LABEL="Type" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="VARIABLE" LABEL="Variable" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LABEL" LABEL="Label" LENGTH="256" FORMAT="" TYPE="C"/>
+<Variable NAME="FORMAT" LABEL="Format" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LEVEL" LABEL="Measurement Level" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="TYPE" LABEL="Type" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="COST" LABEL="Cost" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="USE" LABEL="Use" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="MIN" LABEL="Minimum" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="MEAN" LABEL="Mean" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="MAX" LABEL="Maximum" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecMeta>
+</WORK_LIFE_BALANCE_SCORE>
+</EmTargetAttributes>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMMODL.REGRESSION.CLASS" COMPONENT="Regression" ID="Reg4" X="615" Y="211" DESCRIPTION="Forward regression" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Reg">
+<PROPERTIES MainEffect="Y" TwoFactor="N" Polynomial="N" PolynomialDegree="2" Terms="N" Error="NORMAL" LinkFunction="LOGIT" SuppressIntercept="N" InputCoding="DEVIATION" MinResourceUse="N" ModelSelection="FORWARD" SelectionCriterion="VERROR" SelectionDefault="Y" Sequential="N" SlEntry="0.05" SlStay="0.05" Start="0" Stop="0" Force="0" Hierarchy="CLASS" Rule="NONE" MaxStep="." StepOutput="N" OptimizationTechnique="DEFAULT" ModelDefaults="Y" MaxIterations="." MaxFunctionCalls="." MaxCPUTime="1 HOUR" ConvDefaults="Y" AbsConvValue="-1.34078E154" AbsFValue="0" AbsFTime="1" AbsGValue="0.00001" AbsGTime="1" AbsXValue="1E-8" AbsXTime="1" FConvValue="0" FConvTimes="1" GConvValue="1E-6" GConvTimes="1" ClParm="N" Covout="N" CovB="N" CorB="N" Simple="N" SuppressOutput="N" Details="N" PrintDesignMatrix="N" SASSPDS="N" Performance="N" ExcludedVariable="REJECT" ForceRun="N" RunAction="Train" Component="Regression" Interactions="">
+<VariableProperties/>
+<EmTargetAttributes>
+<WORK_LIFE_BALANCE_SCORE>
+<DecData Table="EMWS7.Reg4_WORK_LIFE_BALANC_DD">
+<Data>
+<Obs WORK_LIFE_BALANCE_SCORE="480"/>
+<Obs WORK_LIFE_BALANCE_SCORE="820.2"/>
+<Obs WORK_LIFE_BALANCE_SCORE="666.52662388"/>
+</Data>
+<Metadata>
+<Variable NAME="WORK_LIFE_BALANCE_SCORE" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecData>
+<DecMeta Table="EMWS7.Reg4_WORK_LIFE_BALANC_DM">
+<Data>
+<Obs _TYPE_="MATRIX" VARIABLE="" LABEL="" FORMAT="" LEVEL="PROFIT" TYPE="" COST="" USE="N" MIN="." MEAN="." MAX="."/>
+<Obs _TYPE_="TARGET" VARIABLE="WORK_LIFE_BALANCE_SCORE" LABEL="" FORMAT="BEST12.0" LEVEL="INTERVAL" TYPE="N" COST="" USE="" MIN="480" MEAN="666.52662388" MAX="820.2"/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_WORK_LIFE_BALANCE_SCORE" LABEL="Predicted: WORK_LIFE_BALANCE_SCORE" FORMAT="" LEVEL="" TYPE="N" COST="" USE="" MIN="." MEAN="." MAX="."/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_WORK_LIFE_BALANCE_SCORE" LABEL="Residual: WORK_LIFE_BALANCE_SCORE" FORMAT="" LEVEL="" TYPE="N" COST="" USE="" MIN="." MEAN="." MAX="."/>
+</Data>
+<Metadata>
+<Variable NAME="_TYPE_" LABEL="Type" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="VARIABLE" LABEL="Variable" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LABEL" LABEL="Label" LENGTH="256" FORMAT="" TYPE="C"/>
+<Variable NAME="FORMAT" LABEL="Format" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LEVEL" LABEL="Measurement Level" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="TYPE" LABEL="Type" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="COST" LABEL="Cost" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="USE" LABEL="Use" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="MIN" LABEL="Minimum" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="MEAN" LABEL="Mean" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="MAX" LABEL="Maximum" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecMeta>
+</WORK_LIFE_BALANCE_SCORE>
+</EmTargetAttributes>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMMODL.REGRESSION.CLASS" COMPONENT="Regression" ID="Reg5" X="614" Y="495" DESCRIPTION="Stepwise Regression" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Reg">
+<PROPERTIES MainEffect="Y" TwoFactor="N" Polynomial="N" PolynomialDegree="2" Terms="N" Error="NORMAL" LinkFunction="LOGIT" SuppressIntercept="N" InputCoding="DEVIATION" MinResourceUse="N" ModelSelection="STEPWISE" SelectionCriterion="VERROR" SelectionDefault="Y" Sequential="N" SlEntry="0.05" SlStay="0.05" Start="0" Stop="0" Force="0" Hierarchy="CLASS" Rule="NONE" MaxStep="." StepOutput="N" OptimizationTechnique="DEFAULT" ModelDefaults="Y" MaxIterations="." MaxFunctionCalls="." MaxCPUTime="1 HOUR" ConvDefaults="Y" AbsConvValue="-1.34078E154" AbsFValue="0" AbsFTime="1" AbsGValue="0.00001" AbsGTime="1" AbsXValue="1E-8" AbsXTime="1" FConvValue="0" FConvTimes="1" GConvValue="1E-6" GConvTimes="1" ClParm="N" Covout="N" CovB="N" CorB="N" Simple="N" SuppressOutput="N" Details="N" PrintDesignMatrix="N" SASSPDS="N" Performance="N" ExcludedVariable="REJECT" ForceRun="N" RunAction="Train" Component="Regression" Interactions="">
+<VariableProperties/>
+<EmTargetAttributes>
+<WORK_LIFE_BALANCE_SCORE>
+<DecData Table="EMWS7.Reg5_WORK_LIFE_BALANC_DD">
+<Data>
+<Obs WORK_LIFE_BALANCE_SCORE="480"/>
+<Obs WORK_LIFE_BALANCE_SCORE="820.2"/>
+<Obs WORK_LIFE_BALANCE_SCORE="666.52662388"/>
+</Data>
+<Metadata>
+<Variable NAME="WORK_LIFE_BALANCE_SCORE" LABEL="" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecData>
+<DecMeta Table="EMWS7.Reg5_WORK_LIFE_BALANC_DM">
+<Data>
+<Obs _TYPE_="MATRIX" VARIABLE="" LABEL="" FORMAT="" LEVEL="PROFIT" TYPE="" COST="" USE="N" MIN="." MEAN="." MAX="."/>
+<Obs _TYPE_="TARGET" VARIABLE="WORK_LIFE_BALANCE_SCORE" LABEL="" FORMAT="BEST12.0" LEVEL="INTERVAL" TYPE="N" COST="" USE="" MIN="480" MEAN="666.52662388" MAX="820.2"/>
+<Obs _TYPE_="PREDICTED" VARIABLE="P_WORK_LIFE_BALANCE_SCORE" LABEL="Predicted: WORK_LIFE_BALANCE_SCORE" FORMAT="" LEVEL="" TYPE="N" COST="" USE="" MIN="." MEAN="." MAX="."/>
+<Obs _TYPE_="RESIDUAL" VARIABLE="R_WORK_LIFE_BALANCE_SCORE" LABEL="Residual: WORK_LIFE_BALANCE_SCORE" FORMAT="" LEVEL="" TYPE="N" COST="" USE="" MIN="." MEAN="." MAX="."/>
+</Data>
+<Metadata>
+<Variable NAME="_TYPE_" LABEL="Type" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="VARIABLE" LABEL="Variable" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LABEL" LABEL="Label" LENGTH="256" FORMAT="" TYPE="C"/>
+<Variable NAME="FORMAT" LABEL="Format" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="LEVEL" LABEL="Measurement Level" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="TYPE" LABEL="Type" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="COST" LABEL="Cost" LENGTH="32" FORMAT="" TYPE="C"/>
+<Variable NAME="USE" LABEL="Use" LENGTH="1" FORMAT="" TYPE="C"/>
+<Variable NAME="MIN" LABEL="Minimum" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="MEAN" LABEL="Mean" LENGTH="8" FORMAT="" TYPE="N"/>
+<Variable NAME="MAX" LABEL="Maximum" LENGTH="8" FORMAT="" TYPE="N"/>
+</Metadata>
+</DecMeta>
+</WORK_LIFE_BALANCE_SCORE>
+</EmTargetAttributes>
+<EmVariableAttributes/>
+<EmFileProperties>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMEXPL.STATEXPLORE.CLASS" COMPONENT="StatExplore" ID="Stat" X="256" Y="345" DESCRIPTION="StatExplore" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="EXPLORE" TOOLPREFIX="Stat">
+<PROPERTIES BySegment="N" Correlation="Y" Spearman="N" Pearson="Y" ChiSquare="Y" ChiSquareInterval="N" ChiSquareIntervalNBins="5" MaximumVars="1000" HideVariable="Y" DropRejected="Y" UseValidate="N" UseTest="N" UseScore="N" NObs="100000" IntervalDistribution="Y" ClassDistribution="Y" LevelSummary="Y" ForceRun="N" RunAction="Train" Component="StatExplore">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<CROSSTAB Type="DATA">
+<Data/>
+<Metadata/>
+</CROSSTAB>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMMDFY.EMTRANS.CLASS" COMPONENT="Transform" ID="Trans" X="424" Y="345" DESCRIPTION="Transform Variable" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODIFY" TOOLPREFIX="Trans">
+<PROPERTIES DefaultMethod="NONE" DefaultTargetMethod="NONE" DefaultClassMethod="NONE" DefaultClassTargetMethod="NONE" Offset="1" MinOffset="Y" HideVariable="Y" RejectVariable="Y" GroupCutoff="0.1" GroupMissing="N" EmRandomSeed="12345" EmSampleSize="DEFAULT" EmSampleMethod="FIRSTN" MissingValue="USEINSEARCH" SummaryVariables="TRANSFORMED" SummaryStatistics="Y" UseMetaTransform="Y" MissingAsLevel="N" NumberofBins="VARIABLES" MaxOptimalBins="32" ForceRun="N" RunAction="Train" Component="Transform">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<INTERACTION Type="DATA">
+<Data/>
+<Metadata/>
+</INTERACTION>
+<FORMULA Type="DATA">
+<Data/>
+<Metadata/>
+</FORMULA>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="DecisionTree" ID="Tree" X="1074" Y="270" DESCRIPTION="Surrogate Tree" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Tree">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMMODL.TREE.SOURCE" ToolType="MODEL" TrainMode="BATCH" ImportModel="N" Freeze="N" UseMultipleTarget="N" Precision="4" IntervalCriterion="PROBF" NominalCriterion="PROBCHISQ" OrdinalCriterion="ENTROPY" SigLevel="0.2" Splitsize="." LeafSize="5" MinCatSize="5" Maxbranch="2" Maxdepth="6" Nrules="5" Nsurrs="0" MissingValue="USEINSEARCH" UseVarOnce="N" SplitPrecision="4" Subtree="N" NSubtree="58" AssessMeasure="ASE" AssessPercentage="0.25" NodeSample="20000" Exhaustive="5000" Kass="Y" KassApply="BEFORE" Depth="Y" Inputs="N" NumInputs="1" VarSelection="Y" Leafid="Y" NodeRole="SEGMENT" Performance="DISK" CV="N" CVNIter="10" CVRepeat="1" CVSeed="12345" ObsImportance="N" NumSingleImp="5" UseDecision="N" UsePriors="N" ClassColorBy="PERCENTCORRECT" IntColorBy="AVG" ShowNodeId="Y" ShowValid="Y" Pred="N" Target="ALL" Count="Y" ProfitLoss="NONE" PercentCorrect="N" AVG="Y" RASE="N" CreateSample="DEFAULT" SampleMethod="RANDOM" SampleSize="10000" SampleSeed="12345" ForceRun="N" RunAction="Train" Component="DecisionTree" Criterion="DEFAULT" Dummy="N" Predict="Y" ImportedTreeData="">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+<NODE CLASS="SASHELP.EMCORE.EXTENSION.CLASS" COMPONENT="DecisionTree" ID="Tree2" X="1130" Y="135" DESCRIPTION="Surrogate Tree" DIAGRAMID="_ROOT_" PARENTID="" TOOLTYPE="MODEL" TOOLPREFIX="Tree">
+<PROPERTIES Location="CATALOG" Catalog="SASHELP.EMMODL.TREE.SOURCE" ToolType="MODEL" TrainMode="BATCH" ImportModel="N" Freeze="N" UseMultipleTarget="N" Precision="4" IntervalCriterion="PROBF" NominalCriterion="PROBCHISQ" OrdinalCriterion="ENTROPY" SigLevel="0.2" Splitsize="." LeafSize="5" MinCatSize="5" Maxbranch="2" Maxdepth="6" Nrules="5" Nsurrs="0" MissingValue="USEINSEARCH" UseVarOnce="N" SplitPrecision="4" Subtree="ASSESSMENT" NSubtree="1" AssessMeasure="PROFIT/LOSS" AssessPercentage="0.25" NodeSample="20000" Exhaustive="5000" Kass="Y" KassApply="BEFORE" Depth="Y" Inputs="N" NumInputs="1" VarSelection="Y" Leafid="Y" NodeRole="SEGMENT" Performance="DISK" CV="N" CVNIter="10" CVRepeat="1" CVSeed="12345" ObsImportance="N" NumSingleImp="5" UseDecision="N" UsePriors="N" ClassColorBy="PERCENTCORRECT" IntColorBy="AVG" ShowNodeId="Y" ShowValid="Y" Pred="N" Target="ALL" Count="Y" ProfitLoss="NONE" PercentCorrect="N" AVG="Y" RASE="N" CreateSample="DEFAULT" SampleMethod="RANDOM" SampleSize="10000" SampleSeed="12345" ForceRun="N" RunAction="Train" Component="DecisionTree" Criterion="DEFAULT" Dummy="N" Predict="Y" ImportedTreeData="">
+<VariableProperties/>
+<EmTargetAttributes/>
+<EmVariableAttributes/>
+<EmFileProperties>
+<USERTRAINCODE Type="EXTERNAL" Extension="sas">
+<Data/>
+</USERTRAINCODE>
+<EMNOTES Type="EXTERNAL" Extension="txt">
+<Data/>
+</EMNOTES>
+</EmFileProperties>
+</PROPERTIES>
+</NODE>
+</NODES>
+<CONNECTIONS>
+<CONNECTION FROM="FIMPORT" TO="Stat"/>
+<CONNECTION FROM="Stat" TO="Impt"/>
+<CONNECTION FROM="Impt" TO="Drop"/>
+<CONNECTION FROM="Drop" TO="Trans"/>
+<CONNECTION FROM="Trans" TO="Part"/>
+<CONNECTION FROM="Part" TO="Reg5"/>
+<CONNECTION FROM="Part" TO="Reg3"/>
+<CONNECTION FROM="Part" TO="Reg"/>
+<CONNECTION FROM="Part" TO="Reg2"/>
+<CONNECTION FROM="Part" TO="Clus"/>
+<CONNECTION FROM="Part" TO="Reg4"/>
+<CONNECTION FROM="Reg4" TO="HPNNA2"/>
+<CONNECTION FROM="Clus" TO="Prof"/>
+<CONNECTION FROM="Reg2" TO="CNTRL3"/>
+<CONNECTION FROM="Reg" TO="HPNNA"/>
+<CONNECTION FROM="Reg3" TO="CNTRL"/>
+<CONNECTION FROM="Meta" TO="Tree"/>
+<CONNECTION FROM="HPNNA" TO="Meta"/>
+<CONNECTION FROM="HPNNA" TO="CNTRL3"/>
+<CONNECTION FROM="HPNNA2" TO="Meta2"/>
+<CONNECTION FROM="HPNNA2" TO="CNTRL2"/>
+<CONNECTION FROM="Meta2" TO="Tree2"/>
+<CONNECTION FROM="CNTRL4" TO="Ensmbl"/>
+<CONNECTION FROM="Reg5" TO="CNTRL"/>
+<CONNECTION FROM="CNTRL2" TO="CNTRL4"/>
+<CONNECTION FROM="CNTRL3" TO="CNTRL4"/>
+<CONNECTION FROM="CNTRL" TO="CNTRL4"/>
+<CONNECTION FROM="Ensmbl" TO="MdlComp"/>
+<CONNECTION FROM="CNTRL4" TO="MdlComp"/>
+</CONNECTIONS>
+<NOTES>
+<DATA><![CDATA[
+
+]]>
+</DATA>
+</NOTES>
+</Workspace>
+</_ROOT_>
